@@ -34,7 +34,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  margin-top: 30rem;
+  margin-top: 25rem;
 }
 
 .weather-value {
@@ -44,7 +44,7 @@
 }
 
 .weather-con {
-  flex-basis: 30%;
+  flex-basis: 40%;
 }
 
 .weather-location {

@@ -12,8 +12,7 @@ function App() {
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=895284fb2d2c50a520ea537456963d9c`
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const axiosScript = () => {
     axios.get(url)
     .then((response) => {
       setData(response.data);
@@ -21,20 +20,21 @@ function App() {
     })
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axiosScript();
+  }
+
+  const enterSubmit = (e) => {
+    if(e.key === 'Enter') {
+      axiosScript();
+    }
+  }
+
+
   useEffect(() => {
     console.log('Application has Started!');
   }, [])
-
-  // const searchLocation = (e) => {
-  //   if(e.key === 'Enter') {
-  //     axios.get(url)
-  //     .then((response) => {
-  //       setData(response.data);
-  //       console.log(response.data);
-  //     })
-  //     setLocation('');
-  //   }
-  // }
 
   return (
     <div className="App">
@@ -42,24 +42,27 @@ function App() {
         <div className="box-2-of-3">
           <div className="weather-preview">
             <a href='/' className="logo-text">Weather App</a>
-            <div className="weather-details">
-              <h1 className="weather-value">{data.main ? data.main.temp.toFixed() : null}°C</h1>
-              <div className="weather-con">
-                <h2 className="weather-location">{data.name}, {data.sys ? data.sys.country : null}</h2>
-                <p className="time-date">{ format(new Date(), 'H:mm - EEEE, d MMM')}</p>
+            {data.name !== undefined &&
+              <div className="weather-details">
+                <h1 className="weather-value">{data.main ? data.main.temp.toFixed() : null}°C</h1>
+                <div className="weather-con">
+                  <h2 className="weather-location">{data.name}, {data.sys ? data.sys.country : null}</h2>
+                  <p className="time-date">{ format(new Date(), 'H:mm - EEEE, d MMM')}</p>
+                </div>
+                <div className="weather-con-2">
+                  <p className="weather-type">{data.weather ? data.weather[0].description : null}</p>
+                </div>
               </div>
-              <div className="weather-con-2">
-                <p className="weather-type">{data.weather ? data.weather[0].description : null}</p>
-              </div>
-            </div>
+            }
           </div>
         </div>
+
         <div className="box-1-of-3">
           <div className="weather-select">
             <div className="select-top">
               <input type="text" value={location} className="location-field" placeholder="Enter city"
                 onChange={(e) => setLocation(e.target.value)}
-                // onKeyPress={searchLocation}
+                onKeyPress={enterSubmit}
               />
               <button className="search-box" onClick={handleSubmit}>
                 <span>Search</span>
@@ -81,13 +84,15 @@ function App() {
                   <ul><li>Visibility</li></ul>
                   <ul><li>Pressure</li></ul>
                 </div>
-                <div className="box-1-of-2 fw-200">
-                  <ul><li>{data.wind ? data.wind.speed.toFixed() : null}km/h</li></ul>
-                  <ul><li>{data.main ? data.main.feels_like.toFixed() : null}°C</li></ul>
-                  <ul><li>{data.main ? data.main.humidity : null}%</li></ul>
-                  <ul><li>{data.visibility/1000}km</li></ul>
-                  <ul><li>{data.main ? data.main.pressure : null}nHg</li></ul>
-                </div>
+                {data.name !== undefined &&
+                  <div className="box-1-of-2 fw-200">
+                    <ul><li>{data.wind ? data.wind.speed.toFixed() : null}km/h</li></ul>
+                    <ul><li>{data.main ? data.main.feels_like.toFixed() : null}°C</li></ul>
+                    <ul><li>{data.main ? data.main.humidity : null}%</li></ul>
+                    <ul><li>{data.visibility/1000}km</li></ul>
+                    <ul><li>{data.main ? data.main.pressure : null}nHg</li></ul>
+                  </div>
+                }
               </div>
             </div>
           </div>
