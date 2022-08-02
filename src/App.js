@@ -46,7 +46,7 @@ function App() {
               <h1 className="weather-value">{data.main ? data.main.temp.toFixed() : null}°C</h1>
               <div className="weather-con">
                 <h2 className="weather-location">{data.name}, {data.sys ? data.sys.country : null}</h2>
-                <p className="time-date">{ format(new Date(), 'H:m - EEEE, d MMM')}</p>
+                <p className="time-date">{ format(new Date(), 'H:mm - EEEE, d MMM')}</p>
               </div>
               <div className="weather-con-2">
                 <p className="weather-type">{data.weather ? data.weather[0].description : null}</p>
