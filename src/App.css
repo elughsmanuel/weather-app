@@ -66,28 +66,122 @@
 }
 
 .weather-select {
-  padding: 5rem 10rem;
+  background-color: #16213E;
+  height: 100vh;
+  padding: 7rem 5rem;
 }
+
+.select-top {
+  margin-bottom: 5rem;
+}
+
 .location-field {
-  color: #fff;
-  padding: 1rem;
+  width: 80%;
+  font-size: 2rem;
+  color: #bbb;
   background-color: unset;
   border: none;
-  border-bottom: 2px solid #fff;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 5px;
+  letter-spacing: 1px;
 }
 
 .location-field:focus {
   outline: none;
 }
 
-
-
-
-
-
-
-
-.weather-select {
-  background-color: #16213E;
-  height: 100vh;
+.location-field::placeholder {
+  font-size: 2rem;
+  color: #bbb;
+  font-weight: 100;
+  letter-spacing: 1px;
 }
+
+.search-box {
+  width: 10rem;
+  height: 10rem;
+  color: #fff;
+  background-color: #E94560;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: all 1s;
+}
+
+.search-box:hover {
+  background-color: #c83951;
+}
+
+.search-box span {
+  font-size: 1.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+}
+
+.select-middle {
+  padding-bottom: 3rem;
+  border-bottom: 1px solid #bbb;
+  margin-bottom: 5rem;
+}
+
+.select-middle ul {
+  list-style: none;
+}
+
+.select-middle ul li {
+  margin-bottom: 3rem;
+}
+
+.select-middle li a {
+  font-size: 2rem;
+  color: #bbb;
+  font-weight: 300;
+  text-decoration: none;
+  transition: all 1s;
+}
+
+.select-middle li a:hover {
+  color: #fff;
+}
+
+.details-text {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 3rem;
+}
+
+.box-2 {
+  display: flex;
+}
+
+.box-1-of-2 {
+  flex-basis: 30%;
+}
+
+.select-bottom {
+
+}.select-bottom ul {
+  list-style: none;
+
+}
+
+.select-bottom ul li {
+  font-size: 1.5rem;
+  font-weight: 100;
+  margin-bottom: 2rem;
+}
+
+.fw-200 ul li {
+  font-weight: 400;
+}
+
+
+
+
+
+

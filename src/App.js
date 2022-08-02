@@ -3,12 +3,13 @@ import axios from 'axios';
 import { useState } from 'react';
 import { format } from 'date-fns';
 
+
 function App() {
 
   const [data, setData] = useState({});
   const [location, setLocation] = useState('');
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=London,uk&units=metric&appid=887d88a95a3a6638d5096df07a1ad62f`
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=895284fb2d2c50a520ea537456963d9c`
 
   const searchLocation = (event) => {
     if(event.key === 'Enter') {
@@ -41,9 +42,39 @@ function App() {
         </div>
         <div className="box-1-of-3">
           <div className="weather-select">
-            <input onChange={event => setLocation(event.target.value)}
-            onKeyPress={searchLocation}
-            type="text" value={location} className="location-field" />
+            <div className="select-top">
+              <input onChange={event => setLocation(event.target.value)}
+              onKeyPress={searchLocation}
+              type="text" value={location} className="location-field" placeholder="Enter city" />
+              <button className="search-box">
+                <span>Search</span>
+              </button>
+            </div>
+            <div className="select-middle">
+              <ul><li><a href="#">Lagos</a></li></ul>
+              <ul><li><a href="#">New York</a></li></ul>
+              <ul><li><a href="#">London</a></li></ul>
+              <ul><li><a href="#">Dubai</a></li></ul>
+            </div>
+            <div className="select-bottom">
+              <h2 className="details-text">Weather Details</h2>
+              <div className="box-2">
+                <div className="box-1-of-2">
+                  <ul><li>Wind</li></ul>
+                  <ul><li>Feels Like</li></ul>
+                  <ul><li>Humidity</li></ul>
+                  <ul><li>Visibility</li></ul>
+                  <ul><li>Pressure</li></ul>
+                </div>
+                <div className="box-1-of-2 fw-200">
+                  <ul><li>{data.wind ? data.wind.speed.toFixed() : null}km/h</li></ul>
+                  <ul><li>{data.main ? data.main.feels_like.toFixed() : null}°C</li></ul>
+                  <ul><li>{data.main ? data.main.humidity : null}%</li></ul>
+                  <ul><li>{data.visibility/1000}km</li></ul>
+                  <ul><li>{data.main ? data.main.pressure : null}nHg</li></ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
