@@ -2,6 +2,7 @@ import './App.css';
 import axios from 'axios';
 import { useState } from 'react';
 import { format } from 'date-fns';
+import { useEffect } from 'react';
 
 
 function App() {
@@ -11,16 +12,29 @@ function App() {
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=895284fb2d2c50a520ea537456963d9c`
 
-  const searchLocation = (event) => {
-    if(event.key === 'Enter') {
-      axios.get(url)
-      .then((response) => {
-        setData(response.data);
-        console.log(response.data);
-      })
-      setLocation('');
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.get(url)
+    .then((response) => {
+      setData(response.data);
+      console.log(response.data);
+    })
   }
+
+  useEffect(() => {
+    console.log('Application has Started!');
+  }, [])
+
+  // const searchLocation = (e) => {
+  //   if(e.key === 'Enter') {
+  //     axios.get(url)
+  //     .then((response) => {
+  //       setData(response.data);
+  //       console.log(response.data);
+  //     })
+  //     setLocation('');
+  //   }
+  // }
 
   return (
     <div className="App">
@@ -43,18 +57,19 @@ function App() {
         <div className="box-1-of-3">
           <div className="weather-select">
             <div className="select-top">
-              <input onChange={event => setLocation(event.target.value)}
-              onKeyPress={searchLocation}
-              type="text" value={location} className="location-field" placeholder="Enter city" />
-              <button className="search-box">
+              <input type="text" value={location} className="location-field" placeholder="Enter city"
+                onChange={(e) => setLocation(e.target.value)}
+                // onKeyPress={searchLocation}
+              />
+              <button className="search-box" onClick={handleSubmit}>
                 <span>Search</span>
               </button>
             </div>
             <div className="select-middle">
-              <ul><li><a href="#">Lagos</a></li></ul>
-              <ul><li><a href="#">New York</a></li></ul>
-              <ul><li><a href="#">London</a></li></ul>
-              <ul><li><a href="#">Dubai</a></li></ul>
+              <ul><li><p>Lagos</p></li></ul>
+              <ul><li><p>New York</p></li></ul>
+              <ul><li><p>London</p></li></ul>
+              <ul><li><p>Dubai</p></li></ul>
             </div>
             <div className="select-bottom">
               <h2 className="details-text">Weather Details</h2>
